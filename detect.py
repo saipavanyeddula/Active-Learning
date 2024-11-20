@@ -34,6 +34,9 @@ import os
 import platform
 import sys
 from pathlib import Path
+import pathlib
+temp = pathlib.PosixPath
+pathlib.PosixPath = pathlib.WindowsPath
 
 import torch
 
@@ -167,6 +170,12 @@ def run(
     stride, names, pt = model.stride, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
 
+    for module in model.model.modules():  # Access the underlying model
+        if isinstance(module, torch.nn.Dropout):  # Check for Dropout layers
+            module.train()  # Keep dropout active during inference
+        else:
+            module.eval()  # Keep other layers like BatchNorm in eval mode
+
     # Dataloader
     bs = 1  # batch_size
     if webcam:
@@ -193,25 +202,31 @@ def run(
                 ims = torch.chunk(im, im.shape[0], 0)
 
         # Inference
-        with dt[1]:
-            visualize = increment_path(save_dir / Path(path).stem, mkdir=True) if visualize else False
-            if model.xml and im.shape[0] > 1:
-                pred = None
-                for image in ims:
-                    if pred is None:
-                        pred = model(image, augment=augment, visualize=visualize).unsqueeze(0)
-                    else:
-                        pred = torch.cat((pred, model(image, augment=augment, visualize=visualize).unsqueeze(0)), dim=0)
-                pred = [pred, None]
-            else:
-                pred = model(im, augment=augment, visualize=visualize)
-        # NMS
-        with dt[2]:
-            pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
+        all_preds = []
+        for _ in range(10):
+            # Inference
+            with dt[1]:
+                visualize = increment_path(save_dir / Path(path).stem, mkdir=True) if visualize else False
+                if model.xml and im.shape[0] > 1:
+                    pred = None
+                    for image in ims:
+                        if pred is None:
+                            pred = model(image, augment=augment, visualize=visualize).unsqueeze(0)
+                        else:
+                            pred = torch.cat((pred, model(image, augment=augment, visualize=visualize).unsqueeze(0)),
+                                             dim=0)
+                    pred = [pred, None]
+                else:
+                    pred = model(im, augment=augment, visualize=visualize)
+
+            # NMS (Non-Max Suppression)
+            with dt[2]:
+                pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
+                all_preds.extend(pred)  # Collect predictions for each forward pass
 
         # Second-stage classifier (optional)
         # pred = utils.general.apply_classifier(pred, classifier_model, im, im0s)
-
+        print(all_preds)
         # Define the path for the CSV file
         csv_path = save_dir / "predictions.csv"
 
@@ -226,7 +241,7 @@ def run(
                 writer.writerow(data)
 
         # Process predictions
-        for i, det in enumerate(pred):  # per image
+        for i, det in enumerate(all_preds):  # per image
             seen += 1
             if webcam:  # batch_size >= 1
                 p, im0, frame = path[i], im0s[i].copy(), dataset.count

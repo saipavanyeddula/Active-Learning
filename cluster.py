@@ -7,6 +7,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 import torch
+import numpy as np
+from sklearn.cluster import DBSCAN
 import pathlib
 temp = pathlib.PosixPath
 pathlib.PosixPath = pathlib.WindowsPath
@@ -174,93 +176,46 @@ def run(
                 pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
                 all_preds.append(pred)  # Collect predictions for each forward pass
 
-        # print(f"all predictions are : {all_preds}")
-
-        # Initialize a dictionary to store predictions grouped by bounding box and class id
-        preds_by_object = {}
-        iou_threshold = 0.5
-
-        # Collect all predictions
-        for preds in all_preds:
-            for p in preds:
-                for tensor in p:
-                    if isinstance(tensor, torch.Tensor):
-                        tensor_data = tensor.cpu().numpy()  # Convert tensor to NumPy array
-                        boxes = tensor_data[:4]  # Extract bounding box coordinates
-                        conf = tensor_data[4]  # Extract confidence score
-                        class_id = int(tensor_data[5])  # Extract class ID as integer
-
-                        # Try to match this prediction with existing objects using IoU
-                        matched = False
-                        for key in preds_by_object.keys():
-                            existing_boxes = preds_by_object[key]["boxes"]
-                            # Compute IoU with the last (most recent) box for this object
-                            iou_val = iou(existing_boxes[-1], boxes)
-
-                            if iou_val > iou_threshold and class_id == key[1]:
-                                # If IoU is high enough and class_id matches, it's the same object
-                                preds_by_object[key]["boxes"].append(boxes)
-                                preds_by_object[key]["confs"].append(conf)
-                                matched = True
-                                break
-
-                        if not matched:
-                            # If no match found, consider it a new object
-                            new_key = (tuple(boxes), class_id)
-                            preds_by_object[new_key] = {'boxes': [], 'confs': []}
-                            preds_by_object[new_key]["boxes"].append(boxes)
-                            preds_by_object[new_key]["confs"].append(conf)
-
-        # Initialize list to store final predictions
+        # Perform clustering on collected predictions
+        clustered_predictions = cluster_predictions(all_preds, eps=0.3, min_samples=2)
+        print(all_preds)
+        # Process clustered predictions
         uncertainity_preds = []
         valid_preds = []
-        uncertainity_thresold_value = 0.5
-        print(f"the didctionary of preds {preds_by_object}")
+        uncertainity_threshold = 0.5
 
-        # Calculate mean for each unique object
-        for key, data in preds_by_object.items():
-            # print(f"printing the key : {key}, the data {data}, for the preds_by_object.items() {preds_by_object.items()}")
-            mean_boxes = np.mean(data['boxes'], axis=0)
-            box_variance = np.std(data['boxes'], axis=0)
-            # print(f"mean of all boxes {mean_boxes}")
-            # print(f"variance of all boxes {box_variance}")
-            mean_confs = np.mean(data['confs'], axis=0)
-            confidence_variance = np.std(data['confs'], axis=0)
-            confs_var = np.var(data['confs'], axis=0)
-            print(f"means of conf scores {mean_confs}")
-            print(f"std deviation of all confs {confs_var}")
-            class_id = key[1]  # Extract class ID from the key
+        for cluster_id, data in clustered_predictions.items():
+            mean_box = np.mean(data['boxes'], axis=0)
+            variance_box = np.std(data['boxes'], axis=0)
+            mean_conf = np.mean(data['confs'])
+            conf_variance = np.var(data['confs'])
+            class_id = int(np.round(np.mean(data['class_ids'])))
 
-            plt.figure(figsize=(8, 6))
-            plt.scatter(mean_confs, confs_var, c='blue', alpha=0.6, edgecolors='k')
-            plt.xlabel("Mean Confidence Score")
-            plt.ylabel("Variance in Confidence Score")
-            plt.title("Mean vs. Confidence Variance")
-            plt.grid(True)
-            plt.show()
+            # Calculate Dempster-Shafer Theory uncertainty metrics (belief, doubt, ignorance)
+            belief, doubt, ignorance, dst_score = dempster_shafer_confidence(data['confs'])
 
-            if mean_confs < uncertainity_thresold_value:
-                # Create a tensor row for YOLO format: [x1, y1, x2, y2, confidence, class_id]
-                uncertainity_preds.append(np.concatenate((mean_boxes, [mean_confs], [class_id])))
+            # Visualization of model uncertainity.
+            # plt.figure(figsize=(8, 6))
+            # plt.scatter(mean_conf, conf_variance, c='blue', alpha=0.6, edgecolors='k')
+            # plt.xlabel("Mean Confidence Score")
+            # plt.ylabel("Confidence Variance")
+            # plt.title("Mean vs. Confidence Variance for Clustered Predictions/Model uncertainity_graph")
+            # plt.grid(True)
+            # plt.show()
+
+            # Classify as uncertain or valid
+            if dst_score < uncertainity_threshold:
+                uncertainity_preds.append(np.concatenate((mean_box, [dst_score], [class_id])))
             else:
-                valid_preds.append(np.concatenate((mean_boxes, [mean_confs], [class_id])))
+                valid_preds.append(np.concatenate((mean_box, [dst_score], [class_id])))
 
+        # Convert final predictions to tensors
+        uncertainity_preds_tensor = [torch.tensor(uncertainity_preds)] if uncertainity_preds else []
+        valid_preds_tensor = [torch.tensor(valid_preds)] if valid_preds else []
 
-        # Convert final predictions to a tensor
-        if len(uncertainity_preds)==0:
-            final_preds_tensor = []
-        else:
-            print(f"uncertainity preds are {uncertainity_preds}")
-            final_preds_tensor = [torch.tensor(uncertainity_preds)]
-            print(f"final preds are {final_preds_tensor}")
-        if len(valid_preds)==0:
-            valid_preds_tensor = []
-        else:
-            valid_preds_tensor = [torch.tensor(valid_preds)]
-
-        # Output the final predictions
-        # print("Final Predictions (YOLO format):")
-        print(valid_preds_tensor)
+        # Output clustered predictions
+        print("Uncertainity Predictions:", uncertainity_preds_tensor)
+        print("Valid Predictions:", valid_preds_tensor)
 
         # Define the path for the CSV file
         csv_path = save_dir / "predictions.csv"
@@ -283,7 +238,7 @@ def run(
         valid_save_dir.mkdir(parents=True, exist_ok=True)  # Create folder if it doesn't e
 
         # Process predictions
-        for i, det in enumerate([final_preds_tensor, valid_preds_tensor]):  # per image
+        for i, det in enumerate([uncertainity_preds_tensor, valid_preds_tensor]):  # per image
             # Set a label for the type of prediction
             pred_type = "Uncertainity" if i == 0 else "Valid"
 
@@ -426,6 +381,82 @@ def parse_opt():
     opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand
     print_args(vars(opt))
     return opt
+
+
+# Define a function for clustering predictions
+def cluster_predictions(predictions, eps=0.5, min_samples=6):
+    """
+    Clusters predictions using DBSCAN based on bounding box coordinates and confidence score.
+
+    Args:
+        predictions (list): List of predictions for each forward pass. Each prediction is expected
+                            to be a list of tensors in YOLO format: [x1, y1, x2, y2, confidence, class_id].
+        eps (float): Maximum distance between points to be considered as in the same cluster.
+        min_samples (int): Minimum number of points to form a cluster.
+
+    Returns:
+        dict: Dictionary of clusters with bounding boxes and confidence scores.
+    """
+    all_boxes = []
+    for preds in predictions:
+        for p in preds:
+            if isinstance(p, torch.Tensor):
+                p = p.cpu().numpy()  # Convert tensor to NumPy array
+            for tensor_data in p:
+                boxes = tensor_data[:4]  # Bounding box coordinates
+                conf = tensor_data[4]  # Confidence score
+                class_id = int(tensor_data[5])  # Class ID
+                all_boxes.append(np.concatenate((boxes, [conf, class_id])))
+
+    if len(all_boxes) == 0:
+        return {}
+
+    all_boxes = np.array(all_boxes)  # Ensure all_boxes is a NumPy array
+    # Normalize bounding box coordinates for clustering
+    normalized_boxes = all_boxes[:, :4] / np.max(all_boxes[:, :4], axis=0)
+    clustering_features = np.hstack((normalized_boxes, all_boxes[:, 4:5]))  # [x1, y1, x2, y2, confidence]
+
+    # Apply DBSCAN clustering
+    dbscan = DBSCAN(eps=eps, min_samples=min_samples)
+    cluster_labels = dbscan.fit_predict(clustering_features)
+
+    # Group predictions by cluster
+    clustered_preds = {}
+    for i, label in enumerate(cluster_labels):
+        if label == -1:
+            # Noise points (no cluster)
+            continue
+        if label not in clustered_preds:
+            clustered_preds[label] = {'boxes': [], 'confs': [], 'class_ids': []}
+        clustered_preds[label]['boxes'].append(all_boxes[i, :4])
+        clustered_preds[label]['confs'].append(all_boxes[i, 4])
+        clustered_preds[label]['class_ids'].append(all_boxes[i, 5])
+
+    return clustered_preds
+
+# Dempster-Shafer Theory (DST) Implementation
+def dempster_shafer_confidence(confs):
+    """
+    Computes Dempster-Shafer Theory uncertainty metrics for a list of confidence scores.
+    Returns the belief, doubt, and ignorance based on DST.
+    """
+    belief = np.mean(confs)  # Belief is the mean confidence
+    doubt = np.std(confs)  # Doubt is the standard deviation of confidence
+    ignorance = 1 - belief - doubt  # Ignorance is the remaining uncertainty
+    dst_score = belief + doubt
+    return belief, doubt, ignorance, dst_score
+
+# Dempster-Shafer Theory (DST) using Bounding Boxes
+def dempster_shafer_boxes(boxes):
+    """
+    Computes Dempster-Shafer Theory uncertainty metrics for a list of bounding boxes.
+    Returns the belief, doubt, and ignorance based on DST.
+    """
+    belief = np.mean(boxes, axis=0)  # Belief is the mean of bounding box coordinates
+    doubt = np.std(boxes, axis=0)    # Doubt is the standard deviation of bounding box coordinates
+    ignorance = 1 - np.mean(doubt)   # Ignorance is the remaining uncertainty
+    dst_score = belief + doubt
+    return belief, doubt, ignorance, dst_score
 
 def main(opt):
 
