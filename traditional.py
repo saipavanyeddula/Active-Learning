@@ -151,8 +151,14 @@ def run(
                 pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
                 all_preds.append(pred)  # Collect predictions for each forward pass
 
+        # Calculate variance across forward passes
+        variances = calculate_variance(all_preds)
+
+        # Adjust epsilon based on variance
+        epsilon = adjust_epsilon(variances, base_epsilon=0.3, scaling_factor=0.1)
+
         # Perform clustering on collected predictions
-        clustered_predictions = cluster_predictions(all_preds, eps=0.3, min_samples=7)
+        clustered_predictions = cluster_predictions(all_preds, eps=epsilon, min_samples=6)
         # Process clustered predictions
         uncertainity_preds = []
         valid_preds = []
@@ -411,6 +417,39 @@ def cluster_predictions(predictions, eps=0.3, min_samples=8):
 
     return clustered_preds
 
+
+def calculate_variance(predictions):
+    """
+    Calculate variance of bounding box coordinates and confidence score across forward passes for each object.
+    predictions: List of lists of tensors where each tensor is [x1, y1, x2, y2, confidence, class_id]
+    """
+    variances = []
+    for preds in predictions:
+        if isinstance(preds, list):
+            # Extract bounding box coordinates and confidence scores
+            bbox_coords = np.array([p[:4] for p in preds])  # [x1, y1, x2, y2]
+            conf_scores = np.array([p[4] for p in preds])  # [confidence]
+
+            # Calculate variance for bounding box coordinates
+            bbox_variance = np.var(bbox_coords, axis=0).mean()  # Mean variance across bbox coordinates
+            conf_variance = np.var(conf_scores)  # Variance of confidence scores
+
+            # Calculate overall variance (can be weighted or adjusted)
+            total_variance = bbox_variance + conf_variance
+            variances.append(total_variance)
+    return variances
+
+
+def adjust_epsilon(variances, base_epsilon=0.3, scaling_factor=0.05):
+    """
+    Adjust epsilon based on the variance of bounding boxes and confidence scores.
+    """
+    # Calculate the average variance
+    avg_variance = np.mean(variances)
+
+    # Adjust epsilon based on average variance
+    dynamic_epsilon = base_epsilon + (avg_variance * scaling_factor)
+    return dynamic_epsilon
 
 def main(opt):
 
