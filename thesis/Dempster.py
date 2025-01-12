@@ -5,7 +5,6 @@ import platform
 import sys
 from pathlib import Path
 import matplotlib.pyplot as plt
-from scipy.spatial.distance import pdist
 
 import torch
 import numpy as np
@@ -76,7 +75,6 @@ def run(
     dnn=False,  # use OpenCV DNN for ONNX inference
     vid_stride=1,  # video frame-rate stride
     num_forward_passes=10,  # Number of stochastic passes for uncertainty estimation
-    uncertainity_threshold=0.3,  # uncertainity thresold
 ):
 
     source = str(source)
@@ -106,7 +104,7 @@ def run(
             module.eval()  # Keep other layers like BatchNorm in eval mode
 
     # Dataloader
-    bs = 16  # batch_size
+    bs = 1  # batch_size
     if webcam:
         view_img = check_imshow(warn=True)
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt, vid_stride=vid_stride)
@@ -151,16 +149,9 @@ def run(
             with dt[2]:
                 pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
                 all_preds.append(pred)  # Collect predictions for each forward pass
-        #print(f"all preds are {all_preds}")
-        # Calculate variance across forward passes
-        #predictions_variance = calculate_prediction_variance(all_preds)
-        #base_epsilon = calculate_base_epsilon(all_preds)
-
-        # Adjust epsilon based on variance
-        #epsilon = adjust_epsilon(predictions_variance, base_epsilon=base_epsilon, scaling_factor=0.1)
 
         # Perform clustering on collected predictions
-        clustered_predictions = cluster_predictions(all_preds, eps=0.2, min_samples=6)
+        clustered_predictions = cluster_predictions(all_preds, eps=0.3, min_samples=7)
         # Process clustered predictions
         uncertainity_preds = []
         valid_preds = []
@@ -173,46 +164,34 @@ def run(
             conf_variance = np.var(data['confs'])
             class_id = int(np.round(np.mean(data['class_ids'])))
 
-            uncertainity_score = 1 - mean_conf
-            #print(f"the uncertainity score for {cluster_id} is {uncertainity_score} and varianc of confidence score is {conf_variance} with mean conf {mean_conf}")
-            # Classify as uncertain or valid
-            #if uncertainity_score > uncertainity_threshold:
-            #    uncertainity_preds.append(np.concatenate((mean_box, [mean_conf], [class_id])))
-            #else:
-            #    valid_preds.append(np.concatenate((mean_box, [mean_conf], [class_id])))
-            final_preds.append(np.concatenate((mean_box, [mean_conf], [class_id], [conf_variance])))
-        # Convert final predictions to tensors
-        #uncertainity_preds_tensor = [torch.tensor(uncertainity_preds)] if uncertainity_preds else []
-        #valid_preds_tensor = [torch.tensor(valid_preds)] if valid_preds else []
+            # Calculate Dempster-Shafer Theory uncertainty metrics (belief, doubt, ignorance)
+            belief, doubt, ignorance, dst_score, ignorance_plus_doubt = dempster_shafer_confidence(data['confs'])
+            final_preds.append(np.concatenate((mean_box, [dst_score], [class_id], [ignorance], [doubt], [belief], [ignorance_plus_doubt])))
+
+
         # Convert final predictions to tensors
         final_preds_tensor = [torch.tensor(final_preds)] if final_preds else []
-        #print(f"final tensor is {final_preds_tensor}")
 
-        # Output clustered predictions
-        #print("Uncertainity Predictions:", uncertainity_preds_tensor)
-        #print("Valid Predictions:", valid_preds_tensor)
-
-
-        # Define the path for the CSV file
+        # Write to CSV function
         csv_path = save_dir / "predictions.csv"
-        # Define the headers
-        headers = ["Image Name", "Class Name", "Confidence Score", "conf_variance","x_min", "y_min", "x_max", "y_max"]
+        headers = ["Image Name", "Class Name", "Confidence Score", "x_min", "y_min", "x_max", "y_max", "ignorance",
+                   "doubt", 'belief', "ignorance_plus_doubt"]
 
-        # Create or append to the CSV file
-        def write_to_csv(image_name, prediction, confidence, bbox_coords, conf_variance):
+        def write_to_csv(image_name, prediction, confidence, bbox_coords, ignorance, doubt, belief, ignorance_plus_doubt):
             """Writes prediction data for an image to a CSV file, appending if the file exists."""
-            bbox_coords = [float(coord) for coord in bbox_coords]  # Ensure bounding box coordinates are floats
             data = {
                 "Image Name": image_name,
                 "Class Name": prediction,
-                "Confidence Score": float(confidence),
-                "conf_variance" : float(conf_variance),
+                "Confidence Score": confidence,
                 "x_min": bbox_coords[0],
                 "y_min": bbox_coords[1],
                 "x_max": bbox_coords[2],
                 "y_max": bbox_coords[3],
+                "ignorance": ignorance,
+                "doubt": doubt,
+                'belief': belief,
+                "ignorance_plus_doubt": ignorance_plus_doubt
             }
-            # Open the file in append mode and write data
             file_exists = csv_path.exists()  # Check if file already exists
             with open(csv_path, mode="a", newline="") as f:
                 writer = csv.DictWriter(f, fieldnames=headers)
@@ -220,14 +199,12 @@ def run(
                     writer.writeheader()  # Write headers only if the file is new
                 writer.writerow(data)
 
-        # Create directories for saving predictions
-        #uncertainity_save_dir = save_dir / "Uncertainity_Predictions"
-        #valid_save_dir = save_dir / "Valid_Predictions"
-        #uncertainity_save_dir.mkdir(parents=True, exist_ok=True)  # Create folder if it doesn't exist
-        #valid_save_dir.mkdir(parents=True, exist_ok=True)  # Create folder if it doesn't exist
-        # Create a new directory for saving images with no detections
-        #no_detection_save_dir = save_dir / "No_Detections"
-        #no_detection_save_dir.mkdir(parents=True, exist_ok=True)
+        # # Create directories for saving predictions
+        # uncertainity_save_dir = save_dir / "Uncertainity_Predictions"
+        # valid_save_dir = save_dir / "Valid_Predictions"
+        # images_for_human = save_dir / "Human_to_Annotate"
+        # uncertainity_save_dir.mkdir(parents=True, exist_ok=True)  # Create folder if it doesn't exist
+        # valid_save_dir.mkdir(parents=True, exist_ok=True)  # Create folder if it doesn't e
 
         # Process predictions
         for i, det in enumerate(final_preds_tensor):  # Iterate over final predictions tensor
@@ -256,40 +233,37 @@ def run(
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
                 # Write results
-                for *xyxy, conf, cls, conf_var in reversed(det):
+                for *xyxy, conf, cls, ignorance, doubt, belief, ignorance_plus_doubt in det:
                     c = int(cls)  # integer class
                     label = names[c] if hide_conf else f"{names[c]}"
                     confidence = float(conf)
                     confidence_str = f"{confidence:.2f}"
-                    conf_variance = float(conf_var)
-                    conf_variance_str = f"{conf_variance:.6f}"
-
-                    # Convert bounding box coordinates to a string format
-                    bbox_coords = [float(x.item()) for x in xyxy]  # Convert to a list of floats
-                    bbox_coords_str = ','.join(f"{coord:.2f}" for coord in bbox_coords)  # Join as a string
+                    bbox_coords = [float(coord) for coord in xyxy]  # Ensure bounding box coordinates are floats
 
                     if save_csv:
-                        write_to_csv(p.name, label, confidence_str, bbox_coords,conf_variance_str)
+                        write_to_csv(
+                            p.name, label, confidence_str, bbox_coords, ignorance.item(), doubt.item(), belief.item(),
+                            ignorance_plus_doubt.item()
+                        )
 
                     if save_txt:  # Write to file
                         if save_format == 0:
                             coords = (
-                                        (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()
-                                    )  # normalized xywh
+                                (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()
+                            )  # normalized xywh
                         else:
-                                coords = (torch.tensor(xyxy).view(1, 4) / gn).view(-1).tolist()  # xyxy
-                                line = (cls, *coords, conf) if save_conf else (cls, *coords)  # label format
+                            coords = (torch.tensor(xyxy).view(1, 4) / gn).view(-1).tolist()  # xyxy
+                        line = (cls, *coords, conf) if save_conf else (cls, *coords)  # label format
                         with open(f"{txt_path}.txt", "a") as f:
-                                    f.write(("%g " * len(line)).rstrip() % line + "\n")
+                            f.write(("%g " * len(line)).rstrip() % line + "\n")
 
                     if save_img or save_crop or view_img:  # Add bbox to image
-                        c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f"{names[c]} {conf:.2f}")
                         annotator.box_label(xyxy, label, color=colors(c, True))
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / "crops" / names[c] / f"{p.stem}.jpg", BGR=True)
 
-                    # Stream results
+            # Stream results
             im0 = annotator.result()
             if view_img:
                 if platform.system() == "Linux" and p not in windows:
@@ -299,30 +273,29 @@ def run(
                 cv2.imshow(str(p), im0)
                 cv2.waitKey(1)  # 1 millisecond
 
-                    # Save results (image with detections)
+            # Save results (image with detections)
             if save_img:
                 if dataset.mode == "image":
-                   # print(f"saving the predictions of image")
-                   cv2.imwrite(save_path, im0)
+                    cv2.imwrite(save_path, im0)
                 else:  # 'video' or 'stream'
-                     if vid_path[i] != save_path:  # new video
-                         vid_path[i] = save_path
-                         if isinstance(vid_writer[i], cv2.VideoWriter):
-                              vid_writer[i].release()  # release previous video writer
-                              if vid_cap:  # video
-                                 fps = vid_cap.get(cv2.CAP_PROP_FPS)
-                                 w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                                 h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                              else:  # stream
-                                 fps, w, h = 30, im0.shape[1], im0.shape[0]
-                              save_path = str(Path(save_path).with_suffix(".mp4"))  # force *.mp4 suffix on results videos
-                              vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h))
-                     vid_writer[i].write(im0)
+                    if vid_path[i] != save_path:  # new video
+                        vid_path[i] = save_path
+                        if isinstance(vid_writer[i], cv2.VideoWriter):
+                            vid_writer[i].release()  # release previous video writer
+                        if vid_cap:  # video
+                            fps = vid_cap.get(cv2.CAP_PROP_FPS)
+                            w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                            h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                        else:  # stream
+                            fps, w, h = 30, im0.shape[1], im0.shape[0]
+                        save_path = str(Path(save_path).with_suffix(".mp4"))  # force *.mp4 suffix on results videos
+                        vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h))
+                    vid_writer[i].write(im0)
 
+        # Print time (inference-only)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
 
-
-    # Print results
+        # Print results
     t = tuple(x.t / seen * 1e3 for x in dt)  # speeds per image
     LOGGER.info(f"Speed: %.1fms pre-process, %.1fms inference, %.1fms NMS per image at shape {(1, 3, *imgsz)}" % t)
     if save_txt or save_img:
@@ -376,56 +349,7 @@ def parse_opt():
 
 
 # Define a function for clustering predictions
-# def cluster_predictions(predictions, eps=0.3, min_samples=8, image_size=(640, 640)):
-#     """
-#     Clusters predictions using DBSCAN based on bounding box coordinates and confidence score.
-#
-#     Args:
-#         predictions (list): List of predictions for each forward pass. Each prediction is expected
-#                             to be a list of tensors in YOLO format: [x1, y1, x2, y2, confidence, class_id].
-#         eps (float): Maximum distance between points to be considered as in the same cluster.
-#         min_samples (int): Minimum number of points to form a cluster.
-#
-#     Returns:
-#         dict: Dictionary of clusters with bounding boxes and confidence scores.
-#     """
-#     all_boxes = []
-#     for preds in predictions:
-#         for p in preds:
-#             if isinstance(p, torch.Tensor):
-#                 p = p.cpu().numpy()  # Convert tensor to NumPy array
-#             for tensor_data in p:
-#                 boxes = tensor_data[:4]  # Bounding box coordinates
-#                 conf = tensor_data[4]  # Confidence score
-#                 class_id = int(tensor_data[5])  # Class ID
-#                 all_boxes.append(np.concatenate((boxes, [conf, class_id])))
-#
-#     if len(all_boxes) == 0:
-#         return {}
-#
-#     all_boxes = np.array(all_boxes)  # Ensure all_boxes is a NumPy array
-#     # Normalize bounding box coordinates for clustering
-#     normalized_bboxes = normalize_bboxes(all_boxes[:, :4], image_size=image_size)
-#     clustering_features = np.hstack((normalized_bboxes, all_boxes[:, 4:5]))  # [x1, y1, x2, y2, confidence]
-#
-#     # Apply DBSCAN clustering
-#     dbscan = DBSCAN(eps=eps, min_samples=min_samples)
-#     cluster_labels = dbscan.fit_predict(clustering_features)
-#
-#     # Group predictions by cluster
-#     clustered_preds = {}
-#     for i, label in enumerate(cluster_labels):
-#         if label == -1:
-#             # Noise points (no cluster)
-#             continue
-#         if label not in clustered_preds:
-#             clustered_preds[label] = {'boxes': [], 'confs': [], 'class_ids': []}
-#         clustered_preds[label]['boxes'].append(all_boxes[i, :4])
-#         clustered_preds[label]['confs'].append(all_boxes[i, 4])
-#         clustered_preds[label]['class_ids'].append(all_boxes[i, 5])
-#
-#     return clustered_preds
-def cluster_predictions(predictions, eps=0.1, min_samples=6):
+def cluster_predictions(predictions, eps=0.2, min_samples=6):
     """
     Clusters predictions using DBSCAN based on bounding box coordinates and confidence score.
 
@@ -475,6 +399,33 @@ def cluster_predictions(predictions, eps=0.1, min_samples=6):
 
     return clustered_preds
 
+
+# Dempster-Shafer Theory (DST) Implementation
+def dempster_shafer_confidence(confs):
+    """
+    Computes Dempster-Shafer Theory uncertainty metrics for a list of confidence scores.
+    Returns the belief, doubt, and ignorance based on DST.
+    """
+    belief = np.mean(confs)  # Belief is the mean confidence
+    doubt = np.std(confs)  # Doubt is the standard deviation of confidence
+    ignorance = max(0, 1 - belief - doubt)  # Ignorance is the remaining uncertainty
+    dst_score = belief + doubt
+    ignorance_plus_doubt = ignorance + doubt
+    return belief, doubt, ignorance, dst_score, ignorance_plus_doubt
+
+
+# Dempster-Shafer Theory (DST) using Bounding Boxes
+def dempster_shafer_boxes(boxes):
+    """
+    Computes Dempster-Shafer Theory uncertainty metrics for a list of bounding boxes.
+    Returns the belief, doubt, and ignorance based on DST.
+    """
+    belief = np.mean(boxes, axis=0)  # Belief is the mean of bounding box coordinates
+    doubt = np.std(boxes, axis=0)    # Doubt is the standard deviation of bounding box coordinates
+    ignorance = max(0, 1 - (belief + doubt))   # Ignorance is the remaining uncertainty
+    dst_score = belief + doubt
+    ignorance_plus_doubt = ignorance + doubt
+    return belief, doubt, ignorance, dst_score, ignorance_plus_doubt
 
 
 def main(opt):

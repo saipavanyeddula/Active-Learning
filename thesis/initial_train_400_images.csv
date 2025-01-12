@@ -1,0 +1,401 @@
+image_id,weather,timeofday,scene,stratify_group
+5d9308c1-4d0bfddb.jpg,clear,dawn/dusk,city street,clear_dawn/dusk_city street
+78165384-8994e0ea.jpg,clear,dawn/dusk,city street,clear_dawn/dusk_city street
+15ea4f81-c50c49e4.jpg,clear,dawn/dusk,city street,clear_dawn/dusk_city street
+2245f7ec-d49b0b0f.jpg,clear,dawn/dusk,city street,clear_dawn/dusk_city street
+67a2118c-13ef0f13.jpg,clear,dawn/dusk,city street,clear_dawn/dusk_city street
+15abaf1e-e7d8e0f4.jpg,clear,dawn/dusk,highway,clear_dawn/dusk_highway
+98893398-4d06a74d.jpg,clear,dawn/dusk,highway,clear_dawn/dusk_highway
+48ef469b-d950bd5b.jpg,clear,dawn/dusk,highway,clear_dawn/dusk_highway
+4ca86a72-da3c03b8.jpg,clear,dawn/dusk,highway,clear_dawn/dusk_highway
+62437dbd-96e6362a.jpg,clear,dawn/dusk,residential,clear_dawn/dusk_residential
+4a46012d-2feb108f.jpg,clear,daytime,city street,clear_daytime_city street
+7d57fbb6-90779b7c.jpg,clear,daytime,city street,clear_daytime_city street
+73d9a73c-098af3c0.jpg,clear,daytime,city street,clear_daytime_city street
+12d0f453-fef95e36.jpg,clear,daytime,city street,clear_daytime_city street
+6d7c9671-24920aa1.jpg,clear,daytime,city street,clear_daytime_city street
+2e71f7e9-f04463f0.jpg,clear,daytime,city street,clear_daytime_city street
+1652cc22-d45c05b5.jpg,clear,daytime,city street,clear_daytime_city street
+00fc910e-bce87172.jpg,clear,daytime,city street,clear_daytime_city street
+529762d9-1c1581d0.jpg,clear,daytime,city street,clear_daytime_city street
+aba09d12-a09ba750.jpg,clear,daytime,city street,clear_daytime_city street
+071b83ca-ef33a1e6.jpg,clear,daytime,city street,clear_daytime_city street
+1e54b71a-0e6cbd15.jpg,clear,daytime,city street,clear_daytime_city street
+52bfbb70-6e831e41.jpg,clear,daytime,city street,clear_daytime_city street
+a4f43a2c-999acea5.jpg,clear,daytime,city street,clear_daytime_city street
+940d7600-c72718ca.jpg,clear,daytime,city street,clear_daytime_city street
+1f5a5343-0c4be849.jpg,clear,daytime,city street,clear_daytime_city street
+1bc18e09-e066bed7.jpg,clear,daytime,city street,clear_daytime_city street
+ab5e9398-a8775f60.jpg,clear,daytime,city street,clear_daytime_city street
+2ef923e9-5d8874dd.jpg,clear,daytime,city street,clear_daytime_city street
+6fe15ff3-1c4f9112.jpg,clear,daytime,city street,clear_daytime_city street
+1bb9155d-505f9656.jpg,clear,daytime,city street,clear_daytime_city street
+081d660f-fe1c19b2.jpg,clear,daytime,city street,clear_daytime_city street
+7486e8bf-c2987510.jpg,clear,daytime,city street,clear_daytime_city street
+851ec515-961bffb4.jpg,clear,daytime,city street,clear_daytime_city street
+86f46576-16a333b5.jpg,clear,daytime,city street,clear_daytime_city street
+604b5b3e-c2ff4a91.jpg,clear,daytime,city street,clear_daytime_city street
+66441333-88cf30b1.jpg,clear,daytime,city street,clear_daytime_city street
+7e8b11fe-9b4d5ee6.jpg,clear,daytime,city street,clear_daytime_city street
+24894c5f-bb572090.jpg,clear,daytime,city street,clear_daytime_city street
+8c9980a7-cf32ca9d.jpg,clear,daytime,city street,clear_daytime_city street
+7b83c6b6-59a1fd4b.jpg,clear,daytime,city street,clear_daytime_city street
+a3eda7a6-71d87f90.jpg,clear,daytime,city street,clear_daytime_city street
+178758a1-d8825fbf.jpg,clear,daytime,city street,clear_daytime_city street
+42e8451d-816cc7e4.jpg,clear,daytime,city street,clear_daytime_city street
+04898289-ed683fbf.jpg,clear,daytime,city street,clear_daytime_city street
+386c078e-de80e61b.jpg,clear,daytime,city street,clear_daytime_city street
+70c82858-739a758f.jpg,clear,daytime,city street,clear_daytime_city street
+5df66720-45806b8a.jpg,clear,daytime,city street,clear_daytime_city street
+42053a3e-913d2eff.jpg,clear,daytime,city street,clear_daytime_city street
+ab4796d2-ef74d367.jpg,clear,daytime,city street,clear_daytime_city street
+041a3604-150d32cd.jpg,clear,daytime,highway,clear_daytime_highway
+9ec96fe5-45b585d8.jpg,clear,daytime,highway,clear_daytime_highway
+ad09a5b3-2035a27c.jpg,clear,daytime,highway,clear_daytime_highway
+221a7d5f-d4c50c7d.jpg,clear,daytime,highway,clear_daytime_highway
+1b508ef4-a2b16916.jpg,clear,daytime,highway,clear_daytime_highway
+2f25399c-2ecdc373.jpg,clear,daytime,highway,clear_daytime_highway
+7486e8bf-7cd57722.jpg,clear,daytime,highway,clear_daytime_highway
+1ae2d17c-7606a0ea.jpg,clear,daytime,highway,clear_daytime_highway
+5b6f17ca-0a770577.jpg,clear,daytime,highway,clear_daytime_highway
+07454314-d5919c75.jpg,clear,daytime,highway,clear_daytime_highway
+07b584c5-fff3b3bd.jpg,clear,daytime,highway,clear_daytime_highway
+0d61234a-542010b2.jpg,clear,daytime,highway,clear_daytime_highway
+1797ecb1-212967da.jpg,clear,daytime,highway,clear_daytime_highway
+9000c8cb-f7270146.jpg,clear,daytime,highway,clear_daytime_highway
+79cb4102-e3f167e9.jpg,clear,daytime,highway,clear_daytime_highway
+117f55ba-bf778c91.jpg,clear,daytime,highway,clear_daytime_highway
+162995f1-d2c7d259.jpg,clear,daytime,highway,clear_daytime_highway
+634c1785-3bb9a8a2.jpg,clear,daytime,highway,clear_daytime_highway
+327e2f77-91f87922.jpg,clear,daytime,highway,clear_daytime_highway
+6bd41587-7df1dbac.jpg,clear,daytime,highway,clear_daytime_highway
+4ec50559-06c3c6f5.jpg,clear,daytime,highway,clear_daytime_highway
+1a8d12f7-a60d9f53.jpg,clear,daytime,highway,clear_daytime_highway
+2dd5449c-a911fdc0.jpg,clear,daytime,other,clear_daytime_other
+0f01f75e-17b7bcf8.jpg,clear,daytime,residential,clear_daytime_residential
+60e2fc8e-803218f4.jpg,clear,daytime,residential,clear_daytime_residential
+6368f88a-942da74a.jpg,clear,daytime,residential,clear_daytime_residential
+3d860ec4-d7102e99.jpg,clear,daytime,residential,clear_daytime_residential
+4324ed87-02477fbc.jpg,clear,daytime,residential,clear_daytime_residential
+4f921e05-f687b4a3.jpg,clear,daytime,residential,clear_daytime_residential
+ab441b42-238fa42c.jpg,clear,daytime,residential,clear_daytime_residential
+42e8451d-a494c811.jpg,clear,daytime,residential,clear_daytime_residential
+9b47db0c-d4c0a667.jpg,clear,daytime,residential,clear_daytime_residential
+2fdf38d0-c852cd7e.jpg,clear,daytime,residential,clear_daytime_residential
+0458c2b9-7ebcef58.jpg,clear,daytime,residential,clear_daytime_residential
+250e3ae9-fa9659fd.jpg,clear,daytime,residential,clear_daytime_residential
+1ba35b25-fd8f358c.jpg,clear,night,city street,clear_night_city street
+73fe5b63-2224fdda.jpg,clear,night,city street,clear_night_city street
+0c28bc4e-7a199c9c.jpg,clear,night,city street,clear_night_city street
+b14bb3bf-f2ed2da7.jpg,clear,night,city street,clear_night_city street
+aa20ff51-ced5a100.jpg,clear,night,city street,clear_night_city street
+08f7bc96-150878fe.jpg,clear,night,city street,clear_night_city street
+6ce994a6-9b3f4c3d.jpg,clear,night,city street,clear_night_city street
+b1a6893b-df14a44c.jpg,clear,night,city street,clear_night_city street
+21b782dc-e3756a4c.jpg,clear,night,city street,clear_night_city street
+58b8c7ef-8f26f1fc.jpg,clear,night,city street,clear_night_city street
+3ac06079-0c1f435c.jpg,clear,night,city street,clear_night_city street
+24c8a32e-0854668a.jpg,clear,night,city street,clear_night_city street
+63a701de-87aa8d1d.jpg,clear,night,city street,clear_night_city street
+1b2ae45a-aa7268ac.jpg,clear,night,city street,clear_night_city street
+90a09c56-ed0e17bc.jpg,clear,night,city street,clear_night_city street
+40585f94-d7bac9ac.jpg,clear,night,city street,clear_night_city street
+8d21e779-d0cc693b.jpg,clear,night,city street,clear_night_city street
+ac31485c-5165bd38.jpg,clear,night,city street,clear_night_city street
+246b8a63-c3cd350f.jpg,clear,night,city street,clear_night_city street
+260d06b0-9bc65ec2.jpg,clear,night,city street,clear_night_city street
+107eb708-dfb8b5ac.jpg,clear,night,city street,clear_night_city street
+2fa2a798-d17674e6.jpg,clear,night,city street,clear_night_city street
+9102f80c-2564b38c.jpg,clear,night,city street,clear_night_city street
+055fce38-24181168.jpg,clear,night,city street,clear_night_city street
+50482a53-a333bf4d.jpg,clear,night,city street,clear_night_city street
+1f43f8df-fe32532d.jpg,clear,night,city street,clear_night_city street
+211f84af-32721a49.jpg,clear,night,city street,clear_night_city street
+80cf3290-2517373f.jpg,clear,night,city street,clear_night_city street
+962f6f45-f30c71ec.jpg,clear,night,city street,clear_night_city street
+9593a0bd-a0b9430b.jpg,clear,night,city street,clear_night_city street
+3f02d394-5fb96f32.jpg,clear,night,city street,clear_night_city street
+7be4a6b0-c72c64af.jpg,clear,night,city street,clear_night_city street
+73209194-a23b13c9.jpg,clear,night,city street,clear_night_city street
+634d6bb1-1fa729d0.jpg,clear,night,city street,clear_night_city street
+45a2b455-2c54664f.jpg,clear,night,city street,clear_night_city street
+8b80a373-77421665.jpg,clear,night,city street,clear_night_city street
+918b8100-d92e5ad9.jpg,clear,night,city street,clear_night_city street
+321d08e1-12c12c7d.jpg,clear,night,city street,clear_night_city street
+30a50138-9604771e.jpg,clear,night,city street,clear_night_city street
+5f279a10-d7d2c267.jpg,clear,night,city street,clear_night_city street
+1d2090ea-c3bba67f.jpg,clear,night,city street,clear_night_city street
+52d43a91-7535d3e1.jpg,clear,night,city street,clear_night_city street
+780b73cf-08abc5a0.jpg,clear,night,city street,clear_night_city street
+8c4c1d49-b60d47df.jpg,clear,night,city street,clear_night_city street
+0a0d7f4c-ac5c3c8f.jpg,clear,night,city street,clear_night_city street
+49d90521-3a855f36.jpg,clear,night,city street,clear_night_city street
+9542db5e-97a00866.jpg,clear,night,city street,clear_night_city street
+02d5e1be-0fcb6604.jpg,clear,night,city street,clear_night_city street
+8e724539-a48e0cd8.jpg,clear,night,city street,clear_night_city street
+54884cd4-f5e8b042.jpg,clear,night,city street,clear_night_city street
+677ccda4-ce1530ed.jpg,clear,night,city street,clear_night_city street
+4e3c2864-c9da82eb.jpg,clear,night,city street,clear_night_city street
+1ec4a7bc-3dee0a34.jpg,clear,night,city street,clear_night_city street
+a1e1ea5a-d61c489c.jpg,clear,night,city street,clear_night_city street
+6f9eef0b-255fde51.jpg,clear,night,city street,clear_night_city street
+55343d85-9397bdb4.jpg,clear,night,city street,clear_night_city street
+3383119f-4b54a181.jpg,clear,night,city street,clear_night_city street
+27a1074c-fc740458.jpg,clear,night,city street,clear_night_city street
+70e33c4f-593ab08f.jpg,clear,night,city street,clear_night_city street
+a93aa94e-6f9ceb54.jpg,clear,night,city street,clear_night_city street
+2502b01a-f04b15b7.jpg,clear,night,city street,clear_night_city street
+0ea059ef-101818db.jpg,clear,night,city street,clear_night_city street
+74301073-fa08ecd3.jpg,clear,night,city street,clear_night_city street
+4364d390-779f9ee3.jpg,clear,night,city street,clear_night_city street
+a1f981a6-56298e6e.jpg,clear,night,city street,clear_night_city street
+b1a32515-de892e01.jpg,clear,night,city street,clear_night_city street
+a9500e18-cf79b8be.jpg,clear,night,city street,clear_night_city street
+7f579ae5-3314004a.jpg,clear,night,city street,clear_night_city street
+5973b9d5-4e8964a6.jpg,clear,night,city street,clear_night_city street
+0ec63036-5dea7ef4.jpg,clear,night,city street,clear_night_city street
+a4c33acf-09557bfd.jpg,clear,night,city street,clear_night_city street
+169900a5-27a7d5a6.jpg,clear,night,city street,clear_night_city street
+293c3c1b-f510bb85.jpg,clear,night,city street,clear_night_city street
+2c804348-2f3ec2cf.jpg,clear,night,city street,clear_night_city street
+3fda6604-0747b225.jpg,clear,night,city street,clear_night_city street
+af647489-0d591961.jpg,clear,night,city street,clear_night_city street
+699bfc36-cc49a9e1.jpg,clear,night,city street,clear_night_city street
+815d1535-49b1c896.jpg,clear,night,city street,clear_night_city street
+79d1609c-b0516f7a.jpg,clear,night,city street,clear_night_city street
+aed2ac56-11f074f8.jpg,clear,night,city street,clear_night_city street
+25926759-9ce5f824.jpg,clear,night,city street,clear_night_city street
+97c07e11-66ea53ea.jpg,clear,night,city street,clear_night_city street
+8839aebb-75697a80.jpg,clear,night,city street,clear_night_city street
+9c575988-13fdde07.jpg,clear,night,city street,clear_night_city street
+045fbeb8-c6aa3739.jpg,clear,night,city street,clear_night_city street
+836e9e5b-e8949ff1.jpg,clear,night,city street,clear_night_city street
+08822b78-8e3a3d0e.jpg,clear,night,city street,clear_night_city street
+8ef8da34-054e7efe.jpg,clear,night,city street,clear_night_city street
+71ffb5a5-7668798e.jpg,clear,night,city street,clear_night_city street
+54f571e8-19399306.jpg,clear,night,highway,clear_night_highway
+3ad7cbf3-2f4f7d50.jpg,clear,night,highway,clear_night_highway
+3e075fbf-508fcecc.jpg,clear,night,highway,clear_night_highway
+a751e9d6-c8f8563d.jpg,clear,night,highway,clear_night_highway
+958b3e44-0816103e.jpg,clear,night,highway,clear_night_highway
+2d4f1ca8-62522e96.jpg,clear,night,highway,clear_night_highway
+83c9bec8-20caefe6.jpg,clear,night,highway,clear_night_highway
+23973bed-f34e7dc9.jpg,clear,night,highway,clear_night_highway
+04d5e22c-d14809ec.jpg,clear,night,highway,clear_night_highway
+270489de-7d942fdf.jpg,clear,night,highway,clear_night_highway
+46e2a90c-c3a2b4d3.jpg,clear,night,highway,clear_night_highway
+5dcefd75-48328873.jpg,clear,night,highway,clear_night_highway
+51871623-a94d75d9.jpg,clear,night,highway,clear_night_highway
+071bacb8-3a13e109.jpg,clear,night,highway,clear_night_highway
+3278e1fa-ef2da33c.jpg,clear,night,highway,clear_night_highway
+1737fe46-4724418f.jpg,clear,night,highway,clear_night_highway
+91bf1267-4c6ed4f9.jpg,clear,night,highway,clear_night_highway
+12e88534-159d8dee.jpg,clear,night,highway,clear_night_highway
+5c141824-8fdf3f15.jpg,clear,night,highway,clear_night_highway
+40a0c432-8a654844.jpg,clear,night,highway,clear_night_highway
+23cfd522-0aad1733.jpg,clear,night,highway,clear_night_highway
+79dc6ee7-cb171c9a.jpg,clear,night,highway,clear_night_highway
+34f38cb1-0e60ab4e.jpg,clear,night,highway,clear_night_highway
+a76544ff-8c989698.jpg,clear,night,highway,clear_night_highway
+4bb769f4-f6634b63.jpg,clear,night,highway,clear_night_highway
+71e17cc0-78a639f0.jpg,clear,night,highway,clear_night_highway
+570e3a23-e6105d83.jpg,clear,night,highway,clear_night_highway
+4cf7e094-f6b0e53c.jpg,clear,night,highway,clear_night_highway
+281517cc-6d0d1c8c.jpg,clear,night,highway,clear_night_highway
+4b8f3666-65532309.jpg,clear,night,highway,clear_night_highway
+9f6f7db5-9ae205b3.jpg,clear,night,highway,clear_night_highway
+4e1049b1-d9fca707.jpg,clear,night,highway,clear_night_highway
+2d6ec2a8-d87f539f.jpg,clear,night,highway,clear_night_highway
+24829e69-b5eb25e4.jpg,clear,night,highway,clear_night_highway
+0a229f92-d8ef7bcd.jpg,clear,night,highway,clear_night_highway
+5101b0dc-fc36b961.jpg,clear,night,highway,clear_night_highway
+0fe93f36-2f680735.jpg,clear,night,other,clear_night_other
+865155ca-0b233ab3.jpg,clear,night,residential,clear_night_residential
+6a516dde-992ea965.jpg,clear,night,residential,clear_night_residential
+8fc8ab75-2edb09f5.jpg,clear,night,residential,clear_night_residential
+754a6954-167a630b.jpg,clear,night,residential,clear_night_residential
+ac2720ae-45f619bd.jpg,clear,night,residential,clear_night_residential
+a9ae76f8-00a27f7e.jpg,clear,night,residential,clear_night_residential
+796759a8-0a6c78ad.jpg,clear,night,residential,clear_night_residential
+8c6e67a5-374d6b8d.jpg,clear,night,residential,clear_night_residential
+6f491570-5c66bb06.jpg,overcast,dawn/dusk,city street,overcast_dawn/dusk_city street
+81f9da03-5ec6bc61.jpg,overcast,dawn/dusk,city street,overcast_dawn/dusk_city street
+15f89ba0-2a7e079a.jpg,overcast,dawn/dusk,city street,overcast_dawn/dusk_city street
+6e6cbfcc-8f41858b.jpg,overcast,dawn/dusk,city street,overcast_dawn/dusk_city street
+1ab901af-fad3ddec.jpg,overcast,dawn/dusk,highway,overcast_dawn/dusk_highway
+a75cacaf-fcb3b314.jpg,overcast,dawn/dusk,highway,overcast_dawn/dusk_highway
+6ad7785b-63f54277.jpg,overcast,dawn/dusk,residential,overcast_dawn/dusk_residential
+b05dc32c-04f74325.jpg,overcast,daytime,city street,overcast_daytime_city street
+57ca08aa-daad3570.jpg,overcast,daytime,city street,overcast_daytime_city street
+20959acb-1fdbc7a6.jpg,overcast,daytime,city street,overcast_daytime_city street
+00afa5b2-c14a542f.jpg,overcast,daytime,city street,overcast_daytime_city street
+497780c2-4f1ebc35.jpg,overcast,daytime,city street,overcast_daytime_city street
+46597b02-24203b9a.jpg,overcast,daytime,city street,overcast_daytime_city street
+1025cadf-1f6ac0cd.jpg,overcast,daytime,city street,overcast_daytime_city street
+5756b38d-6e138f00.jpg,overcast,daytime,city street,overcast_daytime_city street
+17c59195-1aa18a25.jpg,overcast,daytime,city street,overcast_daytime_city street
+b0c89856-6f2503f5.jpg,overcast,daytime,city street,overcast_daytime_city street
+1f20c88b-597c2101.jpg,overcast,daytime,city street,overcast_daytime_city street
+63393406-997b985d.jpg,overcast,daytime,city street,overcast_daytime_city street
+2b24e628-8cc0c021.jpg,overcast,daytime,city street,overcast_daytime_city street
+1c56c68b-b520ae6d.jpg,overcast,daytime,city street,overcast_daytime_city street
+47b442ab-cdc4dcd0.jpg,overcast,daytime,city street,overcast_daytime_city street
+4df09649-d3b8d7d5.jpg,overcast,daytime,city street,overcast_daytime_city street
+5dbeec35-a05c0e35.jpg,overcast,daytime,city street,overcast_daytime_city street
+5b07a34c-83ce335a.jpg,overcast,daytime,city street,overcast_daytime_city street
+193a4e40-9fb72d91.jpg,overcast,daytime,city street,overcast_daytime_city street
+8c638195-1016384c.jpg,overcast,daytime,city street,overcast_daytime_city street
+719d128e-61564ce7.jpg,overcast,daytime,city street,overcast_daytime_city street
+82b2826e-c6221757.jpg,overcast,daytime,city street,overcast_daytime_city street
+4657d379-d4537663.jpg,overcast,daytime,city street,overcast_daytime_city street
+468b5df9-4533e167.jpg,overcast,daytime,city street,overcast_daytime_city street
+11378a08-b4f60236.jpg,overcast,daytime,city street,overcast_daytime_city street
+990140fc-6410d07d.jpg,overcast,daytime,city street,overcast_daytime_city street
+4bcb7188-992b2325.jpg,overcast,daytime,highway,overcast_daytime_highway
+a490e133-23d9b741.jpg,overcast,daytime,highway,overcast_daytime_highway
+7d46b441-02d36b09.jpg,overcast,daytime,highway,overcast_daytime_highway
+1a691986-5f7fc458.jpg,overcast,daytime,highway,overcast_daytime_highway
+925129f1-7f6d0d92.jpg,overcast,daytime,highway,overcast_daytime_highway
+48ad9d98-3416dd20.jpg,overcast,daytime,highway,overcast_daytime_highway
+425111c0-010d1daf.jpg,overcast,daytime,highway,overcast_daytime_highway
+aafc8fe5-d0b1640d.jpg,overcast,daytime,highway,overcast_daytime_highway
+272e1d83-782aecf6.jpg,overcast,daytime,highway,overcast_daytime_highway
+2e5ec45d-8893d4cb.jpg,overcast,daytime,highway,overcast_daytime_highway
+2474cb06-ee0169a5.jpg,overcast,daytime,highway,overcast_daytime_highway
+02d3ac59-ada9555d.jpg,overcast,daytime,residential,overcast_daytime_residential
+4f75b510-6aa8a14c.jpg,overcast,daytime,residential,overcast_daytime_residential
+2b3f8d96-fce441ec.jpg,overcast,daytime,residential,overcast_daytime_residential
+4f9ca8ae-7b2dc726.jpg,overcast,daytime,residential,overcast_daytime_residential
+27347dba-05d95473.jpg,overcast,daytime,residential,overcast_daytime_residential
+8618798f-532a7a09.jpg,overcast,daytime,residential,overcast_daytime_residential
+0429dca3-034fed57.jpg,partly cloudy,dawn/dusk,city street,partly cloudy_dawn/dusk_city street
+46b110b6-79f2566b.jpg,partly cloudy,dawn/dusk,city street,partly cloudy_dawn/dusk_city street
+3edc07cc-8b25fc38.jpg,partly cloudy,dawn/dusk,highway,partly cloudy_dawn/dusk_highway
+40fea4f2-7b634cfb.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+551c0746-ffd7b3c6.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+445057ee-f6ecb6c4.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+951bc085-e25ec778.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+3780d38e-0779cb5b.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+161fb85f-4a425c63.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+0857c321-6622ca8c.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+1652cc22-d108ae72.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+90749b46-b745579e.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+379683b4-36f23ac9.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+67d632ce-9b186874.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+7d27091f-03707bf2.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+aedfa490-efde32e8.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+3ae05efa-28c96302.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+b059de74-ea4727b2.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+3fa77b6e-530f2bab.jpg,partly cloudy,daytime,highway,partly cloudy_daytime_highway
+aafc8fe5-a8bc29d0.jpg,partly cloudy,daytime,highway,partly cloudy_daytime_highway
+8b38e147-2cf645f3.jpg,partly cloudy,daytime,highway,partly cloudy_daytime_highway
+69e28394-c14a2d87.jpg,partly cloudy,daytime,highway,partly cloudy_daytime_highway
+4220cbf2-b971aac1.jpg,partly cloudy,daytime,highway,partly cloudy_daytime_highway
+40b80d6e-d89b2e11.jpg,partly cloudy,daytime,highway,partly cloudy_daytime_highway
+72d337eb-b8073c20.jpg,partly cloudy,daytime,highway,partly cloudy_daytime_highway
+48144b9f-e6e39aef.jpg,partly cloudy,daytime,highway,partly cloudy_daytime_highway
+22bd8c6f-bd2aee6d.jpg,partly cloudy,daytime,residential,partly cloudy_daytime_residential
+75093ce4-452cbc40.jpg,partly cloudy,daytime,residential,partly cloudy_daytime_residential
+a0227bd2-a85c5fb6.jpg,partly cloudy,daytime,residential,partly cloudy_daytime_residential
+1f42f14e-383d615c.jpg,rainy,dawn/dusk,city street,rainy_dawn/dusk_city street
+7300f8fb-84ecf547.jpg,rainy,daytime,city street,rainy_daytime_city street
+212244d1-de811568.jpg,rainy,daytime,city street,rainy_daytime_city street
+35c956c2-7984414e.jpg,rainy,daytime,city street,rainy_daytime_city street
+3bd97add-f814a6ea.jpg,rainy,daytime,city street,rainy_daytime_city street
+4f5d6825-8a7bec8d.jpg,rainy,daytime,city street,rainy_daytime_city street
+5c3dda5a-26c7747a.jpg,rainy,daytime,city street,rainy_daytime_city street
+857308ee-ede3e440.jpg,rainy,daytime,city street,rainy_daytime_city street
+994e914e-0fca9347.jpg,rainy,daytime,city street,rainy_daytime_city street
+15ce6834-a4362e42.jpg,rainy,daytime,city street,rainy_daytime_city street
+2f8938b9-e4ae0225.jpg,rainy,daytime,highway,rainy_daytime_highway
+08fd4409-a0d4378a.jpg,rainy,daytime,highway,rainy_daytime_highway
+a1064e6d-910ae454.jpg,rainy,daytime,highway,rainy_daytime_highway
+94d53af7-7b8048d2.jpg,rainy,daytime,residential,rainy_daytime_residential
+a278206e-e1bcf1bd.jpg,rainy,daytime,residential,rainy_daytime_residential
+241df6b0-0ec213ce.jpg,rainy,night,city street,rainy_night_city street
+134fb00b-ed9fc6f4.jpg,rainy,night,city street,rainy_night_city street
+101c7d35-b310a9a2.jpg,rainy,night,city street,rainy_night_city street
+23ea0f4f-ebfdf6e7.jpg,rainy,night,city street,rainy_night_city street
+a9848c05-a8561517.jpg,rainy,night,city street,rainy_night_city street
+7443f60f-6a5a5d05.jpg,rainy,night,city street,rainy_night_city street
+67d809f9-f6489b86.jpg,rainy,night,city street,rainy_night_city street
+91064519-9576b6fc.jpg,rainy,night,city street,rainy_night_city street
+4999631c-4259c564.jpg,rainy,night,city street,rainy_night_city street
+038fbb3b-00346bd4.jpg,rainy,night,highway,rainy_night_highway
+a64b74f3-60318a11.jpg,rainy,night,highway,rainy_night_highway
+6442b96c-77fcafe2.jpg,rainy,night,highway,rainy_night_highway
+91a2c1ad-68af012c.jpg,rainy,night,residential,rainy_night_residential
+4b28b45f-082af819.jpg,snowy,dawn/dusk,city street,snowy_dawn/dusk_city street
+692fd125-1e1767bf.jpg,snowy,daytime,city street,snowy_daytime_city street
+60cfee6b-f17ab2ed.jpg,snowy,daytime,city street,snowy_daytime_city street
+7c8837cb-ba3cb038.jpg,snowy,daytime,city street,snowy_daytime_city street
+666fdbba-cf6d4dcc.jpg,snowy,daytime,city street,snowy_daytime_city street
+1710645f-58d4def6.jpg,snowy,daytime,city street,snowy_daytime_city street
+06d54ae6-76749641.jpg,snowy,daytime,city street,snowy_daytime_city street
+5250cae5-0816cf24.jpg,snowy,daytime,city street,snowy_daytime_city street
+2d4296a2-76bbe9b9.jpg,snowy,daytime,city street,snowy_daytime_city street
+a302322c-16d9fd1b.jpg,snowy,daytime,city street,snowy_daytime_city street
+2e581c37-b9a37335.jpg,snowy,daytime,city street,snowy_daytime_city street
+1bf71c4f-8a713c58.jpg,snowy,daytime,city street,snowy_daytime_city street
+18665f86-b2c83bbb.jpg,snowy,daytime,city street,snowy_daytime_city street
+3d27e4d0-2c984b95.jpg,snowy,daytime,highway,snowy_daytime_highway
+320608e7-0c8fcdff.jpg,snowy,daytime,highway,snowy_daytime_highway
+7dc08598-566ca9ee.jpg,snowy,daytime,residential,snowy_daytime_residential
+4fa3cff9-508b4774.jpg,snowy,daytime,residential,snowy_daytime_residential
+9b0e122c-3ead3b61.jpg,snowy,daytime,residential,snowy_daytime_residential
+89cecd80-4f21bbac.jpg,snowy,night,city street,snowy_night_city street
+25bcf553-6a77cbba.jpg,snowy,night,city street,snowy_night_city street
+7fd26268-8cde2dad.jpg,snowy,night,city street,snowy_night_city street
+2038e4b0-9382b730.jpg,snowy,night,city street,snowy_night_city street
+312c1d93-68e86150.jpg,snowy,night,city street,snowy_night_city street
+2fec67cd-c4eba8b1.jpg,snowy,night,city street,snowy_night_city street
+4147ffb6-e7608a92.jpg,snowy,night,city street,snowy_night_city street
+09329382-5947e435.jpg,snowy,night,city street,snowy_night_city street
+3627e147-b4db5a6e.jpg,snowy,night,city street,snowy_night_city street
+53dc1f78-764a8ded.jpg,snowy,night,city street,snowy_night_city street
+72b0329a-c447c051.jpg,snowy,night,highway,snowy_night_highway
+7915c0ec-dd872999.jpg,snowy,night,residential,snowy_night_residential
+45c3118e-7253b9d6.jpg,undefined,dawn/dusk,city street,undefined_dawn/dusk_city street
+6feede64-1a876fd7.jpg,undefined,dawn/dusk,city street,undefined_dawn/dusk_city street
+9b3e025b-bdbe9d6c.jpg,undefined,daytime,city street,undefined_daytime_city street
+59e33404-d9749e09.jpg,undefined,daytime,city street,undefined_daytime_city street
+4494dbd2-aa217482.jpg,undefined,daytime,city street,undefined_daytime_city street
+41bff999-e678f531.jpg,undefined,daytime,city street,undefined_daytime_city street
+4bbbf20f-22671784.jpg,undefined,daytime,city street,undefined_daytime_city street
+0573cc84-a6067714.jpg,undefined,daytime,city street,undefined_daytime_city street
+52fec519-d18ccf56.jpg,undefined,daytime,city street,undefined_daytime_city street
+a7f5a126-dbd08e88.jpg,undefined,daytime,city street,undefined_daytime_city street
+0d033063-1492639f.jpg,undefined,daytime,city street,undefined_daytime_city street
+9fd77d70-ef4c7bca.jpg,undefined,daytime,city street,undefined_daytime_city street
+5ac4492b-364c1eb2.jpg,undefined,daytime,city street,undefined_daytime_city street
+63cdcaeb-8d55cb6b.jpg,undefined,daytime,city street,undefined_daytime_city street
+ab5df019-de46f96d.jpg,undefined,daytime,city street,undefined_daytime_city street
+18a650d6-c4e34bc5.jpg,undefined,daytime,city street,undefined_daytime_city street
+554eb0ea-e9475f88.jpg,undefined,daytime,city street,undefined_daytime_city street
+5f697884-5252aac7.jpg,undefined,daytime,city street,undefined_daytime_city street
+7ab438bb-9ead8b02.jpg,undefined,daytime,city street,undefined_daytime_city street
+771b75d2-b5177130.jpg,undefined,daytime,city street,undefined_daytime_city street
+8482d601-76208ee1.jpg,undefined,daytime,city street,undefined_daytime_city street
+a00a8844-949dd76f.jpg,undefined,daytime,city street,undefined_daytime_city street
+669b23d1-60d2701f.jpg,undefined,daytime,city street,undefined_daytime_city street
+81f59cb8-3bfd24a2.jpg,undefined,daytime,city street,undefined_daytime_city street
+768722e1-f5cad046.jpg,undefined,daytime,city street,undefined_daytime_city street
+732d433f-8b4abce1.jpg,undefined,daytime,city street,undefined_daytime_city street
+8edff4ef-242b0fa0.jpg,undefined,daytime,city street,undefined_daytime_city street
+576cdc03-4289959a.jpg,undefined,daytime,city street,undefined_daytime_city street
+02250ece-2d6bfd5b.jpg,undefined,daytime,city street,undefined_daytime_city street
+9c57bb80-a5d7bd83.jpg,undefined,daytime,city street,undefined_daytime_city street
+3faf005a-c222f370.jpg,undefined,daytime,city street,undefined_daytime_city street
+07eabbe1-693691f6.jpg,undefined,daytime,highway,undefined_daytime_highway
+35ab42cd-660c10a7.jpg,undefined,daytime,highway,undefined_daytime_highway
+837c8cb0-9bda8a78.jpg,undefined,daytime,highway,undefined_daytime_highway
+ae43cf86-37f9a6e5.jpg,undefined,daytime,highway,undefined_daytime_highway
+3b2b886f-62311735.jpg,undefined,daytime,highway,undefined_daytime_highway
+9900071d-ed37a284.jpg,undefined,daytime,residential,undefined_daytime_residential
+00a2e3ca-5c856cde.jpg,undefined,daytime,residential,undefined_daytime_residential
+4eb022c7-1a226856.jpg,undefined,daytime,residential,undefined_daytime_residential
+5b061d28-f94c4e2e.jpg,undefined,daytime,residential,undefined_daytime_residential
+9fc1b74e-9f5c3946.jpg,undefined,daytime,residential,undefined_daytime_residential
+a2ea66ed-0b4264df.jpg,undefined,daytime,residential,undefined_daytime_residential
+284438e5-1f49e7c9.jpg,undefined,night,city street,undefined_night_city street
+28d8a35e-0fb6220b.jpg,undefined,undefined,other,undefined_undefined_other

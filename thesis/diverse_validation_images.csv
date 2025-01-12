@@ -1,0 +1,51 @@
+image_id,weather,timeofday,scene,stratify_group
+067ebca1-36bf70d8.jpg,snowy,daytime,city street,snowy_daytime_city street
+87aadd75-d85f0f7d.jpg,overcast,daytime,highway,overcast_daytime_highway
+05d30a18-19032166.jpg,clear,night,city street,clear_night_city street
+2dee399e-e8648623.jpg,undefined,daytime,highway,undefined_daytime_highway
+96be86fa-43a6e942.jpg,overcast,daytime,residential,overcast_daytime_residential
+8ff99869-f738dfd5.jpg,clear,daytime,city street,clear_daytime_city street
+5cf7bc2e-4c476545.jpg,clear,daytime,highway,clear_daytime_highway
+a533bbf4-334e448b.jpg,partly cloudy,daytime,highway,partly cloudy_daytime_highway
+01c2e726-c3a655b2.jpg,overcast,daytime,city street,overcast_daytime_city street
+2a462b9a-8e0e63c0.jpg,overcast,daytime,city street,overcast_daytime_city street
+0ac7df0b-e18be171.jpg,overcast,daytime,residential,overcast_daytime_residential
+06429cba-ac407f78.jpg,clear,night,city street,clear_night_city street
+9556b4d9-5f233397.jpg,clear,daytime,city street,clear_daytime_city street
+025ce5d9-afedd5c5.jpg,clear,night,city street,clear_night_city street
+3284ddb6-2f22744a.jpg,clear,night,residential,clear_night_residential
+630dc79e-b5d0c484.jpg,clear,night,city street,clear_night_city street
+9c1ca9f9-bd60f1e7.jpg,clear,night,city street,clear_night_city street
+468ee364-258f355d.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+4e2d2b5b-3dccec1e.jpg,clear,daytime,city street,clear_daytime_city street
+3f8e3982-81c4132e.jpg,clear,daytime,city street,clear_daytime_city street
+ae599ef2-5f225371.jpg,clear,night,city street,clear_night_city street
+6c712995-9b6fa90c.jpg,clear,daytime,city street,clear_daytime_city street
+5e486661-978b0a75.jpg,clear,night,highway,clear_night_highway
+0a248ce2-5111a890.jpg,snowy,night,city street,snowy_night_city street
+5bcb1655-74967e78.jpg,clear,daytime,city street,clear_daytime_city street
+257fea9a-969b21ef.jpg,overcast,daytime,city street,overcast_daytime_city street
+831e128a-3e132db3.jpg,clear,dawn/dusk,highway,clear_dawn/dusk_highway
+77acd586-725815a3.jpg,clear,night,highway,clear_night_highway
+83ccf01d-ff2a35a6.jpg,clear,night,city street,clear_night_city street
+5d5e3b39-b6b3c75e.jpg,snowy,daytime,city street,snowy_daytime_city street
+8b48acc3-1853bc5d.jpg,undefined,daytime,residential,undefined_daytime_residential
+6ca0fced-d491f571.jpg,clear,night,highway,clear_night_highway
+15ab701b-7b8fe159.jpg,clear,night,city street,clear_night_city street
+2420e760-bc421521.jpg,overcast,daytime,highway,overcast_daytime_highway
+032164cf-79aca73b.jpg,clear,night,city street,clear_night_city street
+aaa6ddbc-393731fe.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+3183dff9-3b2ca859.jpg,clear,night,city street,clear_night_city street
+236e681e-1db0d181.jpg,clear,night,highway,clear_night_highway
+58f9d3f8-46e57f9c.jpg,clear,night,residential,clear_night_residential
+92b82734-403fdfe7.jpg,partly cloudy,dawn/dusk,highway,partly cloudy_dawn/dusk_highway
+52cfc105-d1ce3a7b.jpg,undefined,daytime,city street,undefined_daytime_city street
+861062b4-41ceef9d.jpg,partly cloudy,daytime,city street,partly cloudy_daytime_city street
+204a2a93-2ff73e52.jpg,clear,daytime,highway,clear_daytime_highway
+14b30f1a-d4136539.jpg,clear,night,city street,clear_night_city street
+7ef55e9d-2f43db77.jpg,clear,dawn/dusk,residential,clear_dawn/dusk_residential
+76106916-7f727ce7.jpg,clear,daytime,city street,clear_daytime_city street
+083958dc-b83b361c.jpg,clear,daytime,city street,clear_daytime_city street
+30b207bb-9e22dac0.jpg,clear,night,city street,clear_night_city street
+6a42c0ab-9f11fcfb.jpg,rainy,night,city street,rainy_night_city street
+6f4fe096-bc47c2a3.jpg,undefined,dawn/dusk,city street,undefined_dawn/dusk_city street
